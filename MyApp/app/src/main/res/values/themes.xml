@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.MyApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <color name="colorPrimary">#0d6efd</color>
+    <color name="colorSecondary">#6c757d</color>
+    <color name="colorSuccess">#198754</color>
+    <color name="colorDanger">#dc3545</color>
+    <color name="colorWarning">#ffc107</color>
+    <color name="colorInfo">#0dcaf0</color>
+    <color name="colorLight">#f8f9fa</color>
+    <color name="colorDark">#212529</color>
+
+    <style name="Theme.MyApp" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Core colors -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorDark</item>
+        <item name="colorAccent">@color/colorWarning</item>
+
+        <!-- Optional but helpful UI styling -->
+        <item name="android:windowBackground">@color/colorLight</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+    </style>
+
+
 </resources>
