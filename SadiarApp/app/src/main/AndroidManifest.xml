@@ -11,7 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SadiarApp">
-
+        <activity
+            android:name=".Round"
+            android:exported="false" />
+        <activity
+            android:name=".Subject"
+            android:exported="false" />
         <activity
             android:name=".Splash"
             android:exported="true"
@@ -22,17 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            />
-
+            android:exported="false" />
         <activity
             android:name=".Home"
             android:exported="false" />
     </application>
-
 
 </manifest>
