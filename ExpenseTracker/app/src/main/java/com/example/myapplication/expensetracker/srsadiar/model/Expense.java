@@ -7,12 +7,14 @@ public class Expense {
     private String date;
     private String category;
 
+
     public Expense(int id, String title, double amount, String date, String category) {
         this.id = id;
         this.title = title;
         this.amount = amount;
         this.date = date;
         this.category = category;
+
     }
 
     public int getId() { return id; }

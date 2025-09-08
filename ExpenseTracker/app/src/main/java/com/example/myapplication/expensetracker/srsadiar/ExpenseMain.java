@@ -1,8 +1,10 @@
 package com.example.myapplication.expensetracker.srsadiar;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +39,30 @@ public class ExpenseMain extends AppCompatActivity {
         adapter = new ExpenseAdapter(this, expenseList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+
+        // ✅ এখানে লং প্রেস লিসেনার সেট করো
+        adapter.setOnItemLongClickListener((expense, position) -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Delete Transaction")
+                    .setMessage("Are you sure you want to delete this transaction?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                       //delete from databage
+                        dbHelper.deleteTransactionById(
+                                expense.getId()
+
+
+                        );
+
+                        // remove from list
+                        expenseList.remove(position);
+                        adapter.notifyItemRemoved(position);
+
+                        Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
 
         FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(v -> {

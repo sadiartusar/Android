@@ -35,25 +35,25 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/teal_primary"/>
 
-    <EditText
-        android:id="@+id/etDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Select Date"
-        android:focusable="false"
-        android:clickable="true"
-        android:drawableEnd="@drawable/baseline_calendar_month_24" />
-
-
 <!--    <EditText-->
 <!--        android:id="@+id/etDate"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:hint="Date (dd-mm-yyyy)"-->
-<!--        android:inputType="date"-->
-<!--        android:padding="12dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:backgroundTint="@color/teal_primary"/>-->
+<!--        android:hint="Select Date"-->
+<!--        android:focusable="true"-->
+<!--        android:clickable="true"-->
+<!--        android:drawableEnd="@drawable/baseline_calendar_month_24" />-->
+
+
+    <EditText
+        android:id="@+id/etDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date (dd-mm-yyyy)"
+        android:inputType="date"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/teal_primary"/>
 
     <EditText
         android:id="@+id/etCategory"
