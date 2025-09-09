@@ -41,7 +41,7 @@ public class ExpenseMain extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        // ✅ এখানে লং প্রেস লিসেনার সেট করো
+        // ✅ long press listener
         adapter.setOnItemLongClickListener((expense, position) -> {
             new AlertDialog.Builder(this)
                     .setTitle("Delete Transaction")
@@ -71,7 +71,7 @@ public class ExpenseMain extends AppCompatActivity {
 
         FloatingActionButton fabChart = findViewById(R.id.fabChart);
         fabChart.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), Chart.class));
+            startActivity(new Intent(getApplicationContext(), ItemExpense.class));
         });
 
         loadExpenses();
