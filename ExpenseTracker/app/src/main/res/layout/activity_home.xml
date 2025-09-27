@@ -88,6 +88,14 @@
                 android:layout_marginStart="8dp"
                 android:backgroundTint="@color/teal_primary"
                 android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnMonthlyReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monthly Report"
+                />
+
         </LinearLayout>
 
         <!-- Expense List -->

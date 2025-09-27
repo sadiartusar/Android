@@ -78,4 +78,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public double getMonthlyTotalByType(String type, int year, int month) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        // Date format in DB: "DD/MM/YYYY"
+        // We extract the year and month from date TEXT (dd/MM/yyyy)
+        // SQLite substr starts at 1, so:
+        // year substring: substr(date, 7, 4)
+        // month substring: substr(date, 4, 2)
+        String query = "SELECT SUM(amount) FROM " + TABLE_NAME +
+                " WHERE type=? AND substr(date, 7, 4)=? AND substr(date, 4, 2)=?";
+        String monthStr = (month < 10) ? "0" + month : String.valueOf(month);
+        String yearStr = String.valueOf(year);
+
+        Cursor cursor = db.rawQuery(query, new String[]{type, yearStr, monthStr});
+        double total = 0;
+        if (cursor.moveToFirst()) {
+            total = cursor.getDouble(0);
+        }
+        cursor.close();
+        return total;
+    }
+
+
 }

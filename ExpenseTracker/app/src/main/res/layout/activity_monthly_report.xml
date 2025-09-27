@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    >
+
+    <Button
+        android:id="@+id/btnSelectMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Month"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/tvMonth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Report for: "
+        android:textSize="20sp"
+        android:paddingTop="16dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/tvIncome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Income: ৳ 0"
+        android:textSize="18sp"
+        android:paddingTop="24dp"
+        />
+
+    <TextView
+        android:id="@+id/tvExpense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Expense: ৳ 0"
+        android:textSize="18sp"
+        android:paddingTop="12dp"
+        />
+
+    <TextView
+        android:id="@+id/tvBalance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Balance: ৳ 0"
+        android:textSize="18sp"
+        android:paddingTop="12dp"
+        />
+
+</LinearLayout>

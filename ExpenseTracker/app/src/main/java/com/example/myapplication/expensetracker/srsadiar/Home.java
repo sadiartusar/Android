@@ -43,6 +43,17 @@ public class Home extends AppCompatActivity {
             startActivity(intent);
         });
 
+
+        // Home.java er onCreate method er modhhe
+
+        Button btnMonthlyReport = findViewById(R.id.btnMonthlyReport); // ekhane button add korbo xml te age
+
+        btnMonthlyReport.setOnClickListener(v -> {
+            Intent intent = new Intent(Home.this, MonthlyReport.class);
+            startActivity(intent);
+        });
+
+
     }
 
     @Override

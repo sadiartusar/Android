@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTracker">
         <activity
+            android:name=".MonthlyReport"
+            android:exported="false" />
+        <activity
             android:name=".ItemExpense"
             android:exported="false" />
         <activity
