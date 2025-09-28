@@ -58,6 +58,20 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+//        // অন্যগুলো রেখো...
+//        implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+
+        // For Card view
+        implementation("androidx.cardview:cardview:1.0.0")
+
+        // Chart and graph library
+        implementation ("com.github.blackfizz:eazegraph:1.2.2@aar")
+        implementation ("com.nineoldandroids:library:2.4.0")
+
+
+
+
     // Test dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

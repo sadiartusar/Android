@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Calendar;
+
 public class AddIncome extends AppCompatActivity {
 
     private EditText etAmount;
@@ -47,8 +49,17 @@ public class AddIncome extends AppCompatActivity {
             return;
         }
 
-        // Add income to database with type "income"
-        dbHelper.insertTransaction("Income", amount, "", "General", "income");
+        // ✅ Save today's date in dd/MM/yyyy format
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String dayStr = (day < 10) ? "0" + day : String.valueOf(day);
+        String monthStr = (month < 10) ? "0" + month : String.valueOf(month);
+        String date = dayStr + "/" + monthStr + "/" + year;
+
+        dbHelper.insertTransaction("Income", amount, date, "General", "income");
 
         Toast.makeText(this, "Income added successfully", Toast.LENGTH_SHORT).show();
         finish(); // Close activity after adding

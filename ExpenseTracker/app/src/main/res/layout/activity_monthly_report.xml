@@ -1,54 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    >
+    android:padding="16dp">
 
-    <Button
-        android:id="@+id/btnSelectMonth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Month"
-        android:layout_gravity="center_horizontal"
-        />
-
-    <TextView
-        android:id="@+id/tvMonth"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Report for: "
-        android:textSize="20sp"
-        android:paddingTop="16dp"
-        android:gravity="center"
-        />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvIncome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Income: ৳ 0"
-        android:textSize="18sp"
-        android:paddingTop="24dp"
-        />
+        <!-- Select Month Button -->
+        <Button
+            android:id="@+id/btnSelectMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Month"
+            android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/tvExpense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Expense: ৳ 0"
-        android:textSize="18sp"
-        android:paddingTop="12dp"
-        />
+        <!-- Month Title -->
+        <TextView
+            android:id="@+id/tvMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Report for: "
+            android:textSize="20sp"
+            android:gravity="center"
+            android:paddingTop="16dp"/>
 
-    <TextView
-        android:id="@+id/tvBalance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Balance: ৳ 0"
-        android:textSize="18sp"
-        android:paddingTop="12dp"
-        />
+        <!-- Income / Expense / Balance -->
+        <TextView
+            android:id="@+id/tvIncome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Income: ৳0"
+            android:textSize="18sp"
+            android:paddingTop="24dp"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvExpense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Expense: ৳0"
+            android:textSize="18sp"
+            android:paddingTop="12dp"/>
+
+        <TextView
+            android:id="@+id/tvBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Balance: ৳0"
+            android:textSize="18sp"
+            android:paddingTop="12dp"/>
+
+        <!-- CardView for PieChart -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="12dp"
+            android:elevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- PieChart -->
+                <org.eazegraph.lib.charts.PieChart
+                    android:id="@+id/piechart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+
+                <!-- Income & Expense Text -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tvIncomeValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Income: ৳0 (0%)"
+                        android:textSize="16sp"
+                        android:textColor="#4CAF50"/>
+
+                    <TextView
+                        android:id="@+id/tvExpenseValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Expense: ৳0 (0%)"
+                        android:textSize="16sp"
+                        android:textColor="#F44336"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

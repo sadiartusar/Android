@@ -31,7 +31,7 @@ public class AddExpense extends AppCompatActivity {
         etCategory = findViewById(R.id.etCategory);
         btnSave = findViewById(R.id.btnSave);
 
-        // ✅ Date picker set
+        // ✅ Date picker with dd/MM/yyyy format
         etDate.setOnClickListener(v -> {
             final Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
@@ -41,9 +41,12 @@ public class AddExpense extends AppCompatActivity {
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     AddExpense.this,
                     (datePicker, selectedYear, selectedMonth, selectedDay) -> {
-                        // Format: DD/MM/YYYY
-                        String selectedDate = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
-                        etDate.setText(selectedDate);   // ✅ This should now work
+                        // ✅ Always save in dd/MM/yyyy format
+                        String dayStr = (selectedDay < 10) ? "0" + selectedDay : String.valueOf(selectedDay);
+                        String monthStr = ((selectedMonth + 1) < 10) ? "0" + (selectedMonth + 1) : String.valueOf(selectedMonth + 1);
+                        String selectedDate = dayStr + "/" + monthStr + "/" + selectedYear;
+
+                        etDate.setText(selectedDate);
                     },
                     year, month, day);
 

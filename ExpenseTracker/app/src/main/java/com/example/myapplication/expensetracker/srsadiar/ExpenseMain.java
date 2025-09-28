@@ -71,7 +71,7 @@ public class ExpenseMain extends AppCompatActivity {
 
         FloatingActionButton fabChart = findViewById(R.id.fabChart);
         fabChart.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), ItemExpense.class));
+            startActivity(new Intent(getApplicationContext(), Chart.class));
         });
 
         loadExpenses();

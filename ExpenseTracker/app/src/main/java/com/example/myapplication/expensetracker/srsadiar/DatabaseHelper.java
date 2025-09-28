@@ -80,17 +80,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public double getMonthlyTotalByType(String type, int year, int month) {
         SQLiteDatabase db = this.getReadableDatabase();
-        // Date format in DB: "DD/MM/YYYY"
-        // We extract the year and month from date TEXT (dd/MM/yyyy)
-        // SQLite substr starts at 1, so:
-        // year substring: substr(date, 7, 4)
-        // month substring: substr(date, 4, 2)
-        String query = "SELECT SUM(amount) FROM " + TABLE_NAME +
-                " WHERE type=? AND substr(date, 7, 4)=? AND substr(date, 4, 2)=?";
-        String monthStr = (month < 10) ? "0" + month : String.valueOf(month);
-        String yearStr = String.valueOf(year);
 
-        Cursor cursor = db.rawQuery(query, new String[]{type, yearStr, monthStr});
+        String monthStr = (month < 10) ? "0" + month : String.valueOf(month);
+        String pattern = "%/" + monthStr + "/" + year;  // e.g. %/09/2025
+
+        Cursor cursor = db.rawQuery(
+                "SELECT SUM(amount) FROM " + TABLE_NAME + " WHERE type=? AND date LIKE ?",
+                new String[]{type, pattern}
+        );
+
         double total = 0;
         if (cursor.moveToFirst()) {
             total = cursor.getDouble(0);
@@ -98,6 +96,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return total;
     }
+
+
+    // Get total expense per category for a given year+month
+    public Cursor getExpenseTotalsByCategoryForMonth(int year, int month) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String monthStr = (month < 10) ? "0" + month : String.valueOf(month);
+        String pattern = "%/" + monthStr + "/" + year;
+        String query = "SELECT category, SUM(amount) as total FROM " + TABLE_NAME +
+                " WHERE type='expense' AND date LIKE ?" +
+                " GROUP BY category ORDER BY total DESC";
+        return db.rawQuery(query, new String[]{pattern});
+    }
+
+    // Get total income and total expense for a given year+month (two-row cursor)
+    public Cursor getIncomeExpenseTotalsForMonth(int year, int month) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String monthStr = (month < 10) ? "0" + month : String.valueOf(month);
+        String pattern = "%/" + monthStr + "/" + year;
+        String query = "SELECT type, SUM(amount) as total FROM " + TABLE_NAME +
+                " WHERE date LIKE ? AND (type='income' OR type='expense')" +
+                " GROUP BY type";
+        return db.rawQuery(query, new String[]{pattern});
+    }
+
+    // Optional: monthly totals across multiple months (e.g., last N months)
+// returns cursor with columns: year, month, income_total, expense_total
+    public Cursor getMonthlyIncomeExpenseForYear(int year) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        // month substring: substr(date,4,2) as mm, year substr(date,7,4) as yyyy
+        String query = "SELECT substr(date,7,4) as yyyy, substr(date,4,2) as mm, " +
+                "SUM(CASE WHEN type='income' THEN amount ELSE 0 END) as income_total, " +
+                "SUM(CASE WHEN type='expense' THEN amount ELSE 0 END) as expense_total " +
+                "FROM " + TABLE_NAME +
+                " WHERE substr(date,7,4)=? " +
+                " GROUP BY mm ORDER BY mm";
+        return db.rawQuery(query, new String[]{String.valueOf(year)});
+    }
+
 
 
 }
